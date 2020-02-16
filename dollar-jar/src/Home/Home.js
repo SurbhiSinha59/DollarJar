@@ -15,16 +15,18 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <input
-          type="text"
-          onChange={event => {
-            this.nameHandler(event);
-          }}
-          value={this.state.name}
-        ></input>
-        <Link to={{ pathname: "/App", user: this.state.name }}>
-          <button>Submit</button>
-        </Link>
+        <form>
+          <input
+            type="text"
+            onChange={event => {
+              this.nameHandler(event);
+            }}
+            value={this.state.name}
+          ></input>
+          <Link to={{ pathname: "/App", user: this.state.name }}>
+            <button type="submit">Submit</button>
+          </Link>
+        </form>
       </div>
     );
   }

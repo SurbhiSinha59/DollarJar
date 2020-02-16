@@ -30,11 +30,21 @@ class App extends Component {
   };
 
   onSubmit = () => {
-    console.log(this.state.persons);
+    let temp1 = { ...this.state.newObj };
+    if (temp1.name != "") {
+      this.state.persons.push(this.state.newObj);
+      let temp = [...this.state.persons];
+      this.setState({ persons: temp, newObj: { name: "", total: 0, id: 0 } });
+    }
+  };
 
-    this.state.persons.push(this.state.newObj);
-    let temp = [...this.state.persons];
-    this.setState({ persons: temp });
+  onEnterPress = e => {
+    if (e.keyCode == 13) {
+      e.preventDefault();
+      this.state.persons.push(this.state.newObj);
+      let temp = [...this.state.persons];
+      this.setState({ persons: temp, newObj: { name: "", total: 0, id: 0 } });
+    }
   };
 
   jarChange = event => {
@@ -99,6 +109,7 @@ class App extends Component {
           value={this.state.newObj.name}
           placeholder="enter person"
           onChange={this.takeinp}
+          onKeyDown={this.onEnterPress}
         ></input>
         <button onClick={this.onSubmit}>ADD USER</button>
         <p>
